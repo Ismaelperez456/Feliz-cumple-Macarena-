@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#fbf5ed">
+  <title>ÉTERNEL — Macarena</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Botón de Pantalla Completa Top-Right -->
+  <button id="fullscreenBtn" class="fullscreen-btn" aria-label="Pantalla Completa">
+    ⛶
+  </button>
+
+  <main>
+    <!-- PORTADA -->
+    <section class="screen" id="intro">
+      <div class="eyebrow">Aunque los kilómetros nos separen</div>
+      <div class="orbit" aria-hidden="true">
+        <div class="monogram">M</div>
+      </div>
+      <div class="eyebrow">26 · 10 · Para siempre</div>
+      <h1 class="title">Macarena</h1>
+      <p class="intro-sub">
+        Hay regalos que se envuelven.
+        Y hay sentimientos que cruzan cualquier distancia.
+      </p>
+      <button class="btn" id="beginBtn">Descubrir mi sorpresa</button>
+      <div class="footer">ÉTERNEL · UNA HISTORIA DE AMOR</div>
+    </section>
+
+    <!-- CARTA -->
+    <section class="screen hidden" id="letter">
+      <div class="envelope-scene" id="envelopeScene">
+        <p class="eyebrow">Una carta escrita para vos</p>
+        <button class="envelope-button" id="openEnvelope"
+                aria-label="Abrir la carta de Macarena">
+          <div class="envelope">
+            <div class="envelope-back"></div>
+            <div class="envelope-paper">
+              <span>Para mi amor</span>
+              <span class="envelope-heart">♥</span>
+            </div>
+            <div class="envelope-left"></div>
+            <div class="envelope-right"></div>
+            <div class="envelope-flap"></div>
+            <div class="envelope-seal">M</div>
+          </div>
+        </button>
+        <p class="envelope-hint">Tocá el sobre para abrir tu carta</p>
+      </div>
+
+      <div class="letter-card hidden" id="letterCard">
+        <div class="eyebrow">Para vos, con todo mi amor</div>
+        <h2 class="title">Mi querida Macarena</h2>
+        <div class="divider"></div>
+
+        <p class="copy">
+          Hoy quería regalarte algo diferente: un pequeño lugar
+          creado solamente para vos, para recordarte lo especial
+          que sos para mí, sin importar los kilómetros que haya de por medio.
+        </p>
+        <p class="copy">
+          Admiro profundamente tu dedicación, tu manera de perseguir tus sueños
+          y la fuerza con la que seguís construyendo tu camino
+          en la medicina a la distancia. Sé todo lo que significa estudiar,
+          esforzarte y prepararte para convertirte en la uróloga
+          que soñás ser, y me llena de un orgullo enorme verte avanzar todos los días.
+        </p>
+        <p class="copy">
+          Ojalá esta nueva vuelta al sol te encuentre rodeada
+          de amor, salud, oportunidades y motivos para sonreír.
+          Y ojalá la vida nos regale muy pronto el abrazo que tanto esperamos
+          para celebrar juntos.
+        </p>
+        <p class="copy gold">
+          Este regalo es un puente pequeño entre los dos,
+          hecho con todo el amor que te tengo.
+        </p>
+
+        <div class="divider"></div>
+        <button class="btn btn-outline" id="toPrescription">
+          Ver receta médica a distancia
+        </button>
+      </div>
+    </section>
+
+    <!-- RECETA MÉDICA -->
+    <section class="screen hidden" id="prescription">
+      <div class="content-wrap">
+        <div class="eyebrow">Prescripción facultativa obligatoria</div>
+        <div class="medical-mark" aria-hidden="true">🩺</div>
+        <h2 class="title">Receta de Cumpleaños</h2>
+        
+        <div class="prescription-card">
+          <div class="rx-header">
+            <span><strong>PACIENTE:</strong> Dra. Macarena</span>
+            <span><strong>EDAD:</strong> 31 años ✦</span>
+          </div>
+          <div class="divider" style="margin: 12px auto;"></div>
+          <p class="copy" style="text-align: left; margin-bottom: 12px;">
+            <strong>Diagnóstico:</strong> Exceso de amor a distancia, inteligencia brillante y un cumpleaños que merece ser celebrado cruzando fronteras.
+          </p>
+          <p class="copy" style="text-align: left; margin-bottom: 12px;">
+            <strong>Indicaciones médicas:</strong>
+          </p>
+          <ul class="prescription-list">
+            <li>💊 Conversaciones obligatorias sin límite de tiempo para acortar distancias.</li>
+            <li>🩺 Descanso absoluto de preocupaciones, hospital y estudio por hoy.</li>
+            <li>❤️ Paciencia y cuenta regresiva para nuestro próximo reencuentro.</li>
+            <li>✨ Dejar que te malcrie a la distancia y pensar en todo lo lindo que viene.</li>
+          </ul>
+          <div class="rx-signature">
+            <span>Ing. de tu Corazón (Ismael)</span>
+            <span class="gold">Matrícula: Amor Sin Fronteras</span>
+          </div>
+        </div>
+
+        <button class="btn" id="toReasons" style="margin-top: 20px;">
+          Ver las 26 Razones
+        </button>
+      </div>
+    </section>
+
+    <!-- 26 RAZONES -->
+    <section class="screen hidden" id="reasons">
+      <div class="content-wrap">
+        <div class="eyebrow">Pequeñas cosas que hacen grande mi amor</div>
+        <h2 class="title">26 razones para amarte</h2>
+        <p class="copy">
+          Tocá cada tarjeta para descubrir la razón en su interior.
+        </p>
+        <div class="reason-grid" id="reasonGrid"></div>
+        <button class="btn btn-outline" id="toDreams">
+          Y todavía hay más
+        </button>
+      </div>
+    </section>
+
+    <!-- SUS SUEÑOS -->
+    <section class="screen hidden" id="dreams">
+      <div class="content-wrap">
+        <div class="eyebrow">A la mujer que admiro</div>
+        <div class="medical-mark" aria-hidden="true">✧</div>
+        <h2 class="title">Por tus sueños, Macarena</h2>
+        <p class="copy">
+          Que nunca te falte la pasión para aprender, la valentía
+          para afrontar los días difíciles ni la confianza para
+          reconocer todo lo que sos capaz de lograr.
+        </p>
+        <p class="copy">
+          Hoy celebro tus 31 años, la mujer valiente que sos y todo lo
+          hermoso que todavía te espera. Tu camino en la urología
+          es una parte gigante de tu historia, y aunque nos toque estar lejos,
+          estoy con vos en cada paso.
+        </p>
+        <button class="btn" id="toMemories">Un mensaje extra para vos</button>
+      </div>
+    </section>
+
+    <!-- MENSAJE ESPECIAL (DISTANCIA) -->
+    <section class="screen hidden" id="memories">
+      <div class="content-wrap">
+        <div class="eyebrow">Acortando distancias</div>
+        <h2 class="title">Cerca a través de la distancia</h2>
+        <p class="copy">
+          No importa cuántos kilómetros nos separen en el mapa: cada charla, cada mensaje y cada momento compartido logran que sienta que estás acá conmigo.
+        </p>
+        <div class="quote-box">
+          <p class="copy gold" style="margin:0; font-style: italic;">
+            "Gracias por hacer que la distancia valga la pena y por ser mi persona favorita en el mundo entero, sin importar dónde estés."
+          </p>
+        </div>
+        <button class="btn" id="toPromise" style="margin-top: 20px;">Una promesa para vos</button>
+      </div>
+    </section>
+
+    <!-- UNA PROMESA PARA VOS -->
+    <section class="screen hidden" id="promise">
+      <div class="envelope-scene" id="promiseEnvelopeScene">
+        <div class="eyebrow">Un compromiso de mi corazón</div>
+        <h2 class="title" style="margin-bottom: 20px;">Una promesa para vos</h2>
+        <button class="envelope-button" id="openPromiseEnvelope" aria-label="Abrir sobre de la promesa">
+          <div class="envelope promise-envelope">
+            <div class="envelope-back"></div>
+            <div class="envelope-paper">
+              <span>Mi promesa</span>
+              <span class="envelope-heart">✦</span>
+            </div>
+            <div class="envelope-left"></div>
+            <div class="envelope-right"></div>
+            <div class="envelope-flap"></div>
+            <div class="envelope-seal">∞</div>
+          </div>
+        </button>
+        <p class="envelope-hint">Tocá el sobre sellado para descubrir mi promesa</p>
+      </div>
+
+      <div class="letter-card promise-card hidden" id="promiseCard">
+        <div class="eyebrow">Para nuestro futuro juntos</div>
+        <h2 class="title">Mi Promesa Incondicional</h2>
+        <div class="divider"></div>
+
+        <p class="copy">
+          Te prometo que ningún kilómetro será jamás más fuerte que lo que sentimos. Prometo sostener tu mano a la distancia en cada guardia agotadora, celebrar cada uno de tus logros en la urología y recordarte lo increíble que sos aun en los días más difíciles.
+        </p>
+        <p class="copy">
+          Te prometo que todos estos abrazos pendientes los vamos a cobrar juntos, con creces, guardando cada segundo de reencuentro en la memoria para siempre.
+        </p>
+        <p class="copy gold">
+          Prometo seguir eligiéndote hoy, mañana y en cada proyecto que construyamos lado a lado.
+        </p>
+
+        <div class="divider"></div>
+        <button class="btn" id="toUniverse" style="margin-top: 10px;">Nuestro universo</button>
+      </div>
+    </section>
+
+    <!-- NUESTRO UNIVERSO, SIN IMPORTAR LA DISTANCIA -->
+    <section class="screen hidden" id="universe">
+      <div class="content-wrap">
+        <div class="eyebrow">Conectando dos mundos</div>
+        <h2 class="title">Nuestro universo, sin importar la distancia</h2>
+        <p class="copy">
+          Un mapa invisible que une nuestros latidos a través del planeta. Tocá el corazón en el centro de la línea para revelar nuestro secreto.
+        </p>
+
+        <div class="universe-map-container">
+          <div class="city-node left-city">
+            <span class="city-pin">📍</span>
+            <span class="city-name">Tucumán</span>
+            <span class="city-person">Macarena</span>
+          </div>
+
+          <div class="map-connection-line">
+            <button class="pulsing-heart-btn" id="universeHeartBtn" aria-label="Mostrar mensaje de amor">
+              ♥
+            </button>
+          </div>
+
+          <div class="city-node right-city">
+            <span class="city-pin">📍</span>
+            <span class="city-name">Manila</span>
+            <span class="city-person">Ismael</span>
+          </div>
+        </div>
+
+        <div class="universe-message-box hidden" id="universeMsgBox">
+          <p class="copy gold" style="margin: 0; font-style: italic; font-size: 16px;">
+            "La distancia separa nuestros lugares, no lo que sentimos."
+          </p>
+        </div>
+
+        <button class="btn" id="toGarden" style="margin-top: 25px;">Ver el jardín de tulipanes</button>
+      </div>
+    </section>
+
+    <!-- JARDÍN INTERACTIVO DE TULIPANES -->
+    <section class="screen hidden" id="garden">
+      <div class="content-wrap">
+        <div class="eyebrow">Un rincón para vos</div>
+        <h2 class="title">Jardín de Tulipanes</h2>
+        <p class="copy">
+          Tocá cada tulipán blanco para descubrir un mensaje secreto que florece para vos.
+        </p>
+
+        <div class="tulip-garden-grid" id="tulipGardenGrid"></div>
+
+        <div class="tulip-display-box" id="tulipDisplayBox">
+          <span class="tulip-display-icon">🌷</span>
+          <p class="copy gold" id="tulipDisplayText" style="margin: 0; font-style: italic;">
+            Seleccioná un tulipán del jardín para leer su mensaje.
+          </p>
+        </div>
+
+        <button class="btn" id="toFinale" style="margin-top: 25px;">Llegar a la sorpresa final</button>
+      </div>
+    </section>
+
+    <!-- SORPRESA FINAL (CINEMATOGRÁFICA) -->
+    <section class="screen hidden" id="finale">
+      <div class="content-wrap cinematic-celebration">
+        <div class="eyebrow">Y ahora… tu deseo más bonito</div>
+        <h2 class="title cinematic-title">¡Felices 31, mi amor!</h2>
+        <p class="copy">
+          Cerrá los ojos un instante, pedí un deseo
+          y recordá cuánto te amo.
+        </p>
+
+        <button class="btn btn-outline hidden" id="manualPlayBirthdayBtn" style="margin: 0 auto 15px;">
+          ▶ Tocar canción de cumpleaños
+        </button>
+
+        <div class="cake-wrap cinematic-cake" aria-label="Torta de cumpleaños con velas encendidas">
+          <div class="cake">
+            <div class="candle left"><div class="flame"></div></div>
+            <div class="candle right"><div class="flame"></div></div>
+            <div class="cake-body"></div>
+            <div class="cake-top"></div>
+            <div class="icing"></div>
+            <div class="cake-number">31</div>
+          </div>
+        </div>
+
+        <p class="final-message">
+          Que este nuevo año acorte los kilómetros, te acerque a tus sueños, te regale
+          paz y te devuelva multiplicado todo el amor que das.
+          Estoy orgulloso de vos, de tu corazón y de la futura
+          uróloga en la que te estás convirtiendo.
+        </p>
+        
+        <div class="cinematic-wish-box">
+          <p class="copy gold" style="margin:0; font-style: italic; font-size: 16px;">
+            "Mi deseo es que algún día pueda celebrar todos tus cumpleaños abrazándote."
+          </p>
+        </div>
+
+        <div class="divider"></div>
+        <h3 class="title gold final-title">Te amo, Macarena</h3>
+        <p class="eyebrow">Con todo mi corazón · 26 de octubre</p>
+        <button class="btn btn-outline" id="replayBtn">
+          Volver a vivir la sorpresa
+        </button>
+        <div class="footer">ÉTERNEL · HECHO SOLO PARA VOS</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- MÚSICA -->
+  <div class="music-panel">
+    <button class="btn btn-outline" id="romanticMusicBtn">
+      ♫ Música romántica
+    </button>
+    <button class="btn btn-outline hidden" id="birthdayMusicBtn">
+      ♫ Feliz cumpleaños
+    </button>
+  </div>
+
+  <audio id="romanticAudio" loop preload="auto">
+    <source src="romantica.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="birthdayAudio" preload="auto">
+    <source src="feliz-cumple.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
