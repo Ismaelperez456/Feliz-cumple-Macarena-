@@ -14,8 +14,10 @@ const screens = [
 
 function showScreen(id) {
   screens.forEach(screen => {
-    document.getElementById(screen)
-      .classList.toggle("hidden", screen !== id);
+    const el = document.getElementById(screen);
+    if (el) {
+      el.classList.toggle("hidden", screen !== id);
+    }
   });
 
   window.scrollTo({
@@ -48,55 +50,65 @@ document.getElementById("fullscreenBtn").addEventListener("click", () => {
   }
 });
 
+// CONFIGURACIÓN DE AUDIO ROMÁNTICO (Bucle continuo instantáneo)
+const romanticAudio = document.getElementById("romanticAudio");
+if (romanticAudio) {
+  romanticAudio.loop = true;
+  romanticAudio.addEventListener("ended", () => {
+    romanticAudio.currentTime = 0;
+    romanticAudio.play().catch(err => console.log("Error al reiniciar audio romántico:", err));
+  });
+}
+
 // SOBRE Y CARTA PRINCIPAL
 const envelopeButton = document.getElementById("openEnvelope");
 const envelopeScene = document.getElementById("envelopeScene");
 const letterCard = document.getElementById("letterCard");
 
-envelopeButton.addEventListener("click", () => {
-  if (envelopeButton.classList.contains("open")) return;
+if (envelopeButton) {
+  envelopeButton.addEventListener("click", () => {
+    if (envelopeButton.classList.contains("open")) return;
 
-  envelopeButton.classList.add("open");
-  envelopeScene.classList.add("opened");
+    envelopeButton.classList.add("open");
+    envelopeScene.classList.add("opened");
 
-  setTimeout(() => {
-    envelopeScene.classList.add("hidden");
-    letterCard.classList.remove("hidden");
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  }, 850);
-});
+    setTimeout(() => {
+      envelopeScene.classList.add("hidden");
+      letterCard.classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 850);
+  });
+}
 
 // SOBRE Y CARTA DE LA PROMESA
 const promiseEnvelopeBtn = document.getElementById("openPromiseEnvelope");
 const promiseEnvelopeScene = document.getElementById("promiseEnvelopeScene");
 const promiseCard = document.getElementById("promiseCard");
 
-promiseEnvelopeBtn.addEventListener("click", () => {
-  if (promiseEnvelopeBtn.classList.contains("open")) return;
+if (promiseEnvelopeBtn) {
+  promiseEnvelopeBtn.addEventListener("click", () => {
+    if (promiseEnvelopeBtn.classList.contains("open")) return;
 
-  promiseEnvelopeBtn.classList.add("open");
-  promiseEnvelopeScene.classList.add("opened");
+    promiseEnvelopeBtn.classList.add("open");
+    promiseEnvelopeScene.classList.add("opened");
 
-  setTimeout(() => {
-    promiseEnvelopeScene.classList.add("hidden");
-    promiseCard.classList.remove("hidden");
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  }, 850);
-});
+    setTimeout(() => {
+      promiseEnvelopeScene.classList.add("hidden");
+      promiseCard.classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 850);
+  });
+}
 
 // INTERACTIVIDAD CORAZÓN DE DISTANCIA (TUCUMÁN - MANILA)
 const universeHeartBtn = document.getElementById("universeHeartBtn");
 const universeMsgBox = document.getElementById("universeMsgBox");
 
-universeHeartBtn.addEventListener("click", () => {
-  universeMsgBox.classList.toggle("hidden");
-});
+if (universeHeartBtn) {
+  universeHeartBtn.addEventListener("click", () => {
+    universeMsgBox.classList.toggle("hidden");
+  });
+}
 
 // JARDÍN DE TULIPANES INTERACTIVO
 const tulipPhrases = [
@@ -111,23 +123,25 @@ const tulipPhrases = [
 const tulipGrid = document.getElementById("tulipGardenGrid");
 const tulipDisplayText = document.getElementById("tulipDisplayText");
 
-tulipPhrases.forEach((phrase, index) => {
-  const tulipCard = document.createElement("button");
-  tulipCard.className = "tulip-card";
-  tulipCard.type = "button";
-  tulipCard.innerHTML = `
-    <span class="tulip-icon">🌷</span>
-    <span class="tulip-label">Tulipán 0${index + 1}</span>
-  `;
+if (tulipGrid) {
+  tulipPhrases.forEach((phrase, index) => {
+    const tulipCard = document.createElement("button");
+    tulipCard.className = "tulip-card";
+    tulipCard.type = "button";
+    tulipCard.innerHTML = `
+      <span class="tulip-icon">🌷</span>
+      <span class="tulip-label">Tulipán 0${index + 1}</span>
+    `;
 
-  tulipCard.addEventListener("click", () => {
-    document.querySelectorAll(".tulip-card").forEach(c => c.classList.remove("active"));
-    tulipCard.classList.add("active");
-    tulipDisplayText.textContent = `"${phrase}"`;
+    tulipCard.addEventListener("click", () => {
+      document.querySelectorAll(".tulip-card").forEach(c => c.classList.remove("active"));
+      tulipCard.classList.add("active");
+      tulipDisplayText.textContent = `"${phrase}"`;
+    });
+
+    tulipGrid.appendChild(tulipCard);
   });
-
-  tulipGrid.appendChild(tulipCard);
-});
+}
 
 // LAS 26 RAZONES
 const reasons = [
@@ -160,191 +174,227 @@ const reasons = [
 ];
 
 const grid = document.getElementById("reasonGrid");
+if (grid) {
+  reasons.forEach((reasonText, index) => {
+    const button = document.createElement("button");
+    button.className = "reason";
+    button.type = "button";
+    button.innerHTML = `
+      <span class="num">${String(index + 1).padStart(2, "0")}</span>
+      <span class="label">Razón</span>
+      <span class="reason-text">${reasonText}</span>
+    `;
 
-reasons.forEach((reasonText, index) => {
-  const button = document.createElement("button");
+    button.addEventListener("click", () => {
+      button.classList.toggle("open");
+    });
 
-  button.className = "reason";
-  button.type = "button";
-  button.innerHTML = `
-    <span class="num">${String(index + 1).padStart(2, "0")}</span>
-    <span class="label">Razón</span>
-    <span class="reason-text">${reasonText}</span>
-  `;
-
-  button.addEventListener("click", () => {
-    const isOpen = button.classList.contains("open");
-    if (!isOpen) {
-      button.classList.add("open");
-    } else {
-      button.classList.remove("open");
-    }
+    grid.appendChild(button);
   });
+}
 
-  grid.appendChild(button);
-});
+// INTERACTIVIDAD CAJA DE REGALO FINAL (CANCIÓN)
+const openGiftBtn = document.getElementById("openGiftBtn");
+const giftSection = document.getElementById("giftSection");
+const songRevealCard = document.getElementById("songRevealCard");
+
+if (openGiftBtn) {
+  openGiftBtn.addEventListener("click", () => {
+    if (openGiftBtn.classList.contains("opened")) return;
+    openGiftBtn.classList.add("opened");
+    
+    setTimeout(() => {
+      giftSection.classList.add("hidden");
+      songRevealCard.classList.remove("hidden");
+      songRevealCard.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 600);
+  });
+}
 
 // NAVEGACIÓN E INICIO
-document.getElementById("beginBtn").addEventListener("click", async () => {
-  requestFullscreen();
+const beginBtn = document.getElementById("beginBtn");
+if (beginBtn) {
+  beginBtn.addEventListener("click", async () => {
+    requestFullscreen();
+    const romanticBtn = document.getElementById("romanticMusicBtn");
 
-  const romanticAudio = document.getElementById("romanticAudio");
-  const romanticBtn = document.getElementById("romanticMusicBtn");
+    if (romanticAudio) {
+      try {
+        await romanticAudio.play();
+        if (romanticBtn) romanticBtn.textContent = "♫ Pausar música";
+      } catch (err) {
+        console.log("Error reproduciendo audio:", err);
+      }
+    }
 
-  try {
-    await romanticAudio.play();
-    romanticBtn.textContent = "♫ Pausar música";
-  } catch (err) {
-    console.log("Error reproduciendo audio:", err);
+    showScreen("letter");
+  });
+}
+
+const safeClick = (id, targetScreen) => {
+  const btn = document.getElementById(id);
+  if (btn) {
+    btn.addEventListener("click", () => showScreen(targetScreen));
   }
+};
 
-  showScreen("letter");
-});
+safeClick("toPrescription", "prescription");
+safeClick("toReasons", "reasons");
+safeClick("toDreams", "dreams");
+safeClick("toMemories", "memories");
+safeClick("toPromise", "promise");
+safeClick("toUniverse", "universe");
+safeClick("toGarden", "garden");
 
-document.getElementById("toPrescription").addEventListener("click", () => {
-  showScreen("prescription");
-});
+const toFinaleBtn = document.getElementById("toFinale");
+if (toFinaleBtn) {
+  toFinaleBtn.addEventListener("click", async () => {
+    showScreen("finale");
+    showerPetals();
 
-document.getElementById("toReasons").addEventListener("click", () => {
-  showScreen("reasons");
-});
+    const birthdayAudio = document.getElementById("birthdayAudio");
+    const manualPlayBtn = document.getElementById("manualPlayBirthdayBtn");
+    const mySongAudio = document.getElementById("mySongAudio");
+    
+    if (mySongAudio) {
+      mySongAudio.pause();
+      mySongAudio.currentTime = 0;
+    }
 
-document.getElementById("toDreams").addEventListener("click", () => {
-  showScreen("dreams");
-});
+    if (romanticAudio) {
+      romanticAudio.pause();
+      romanticAudio.currentTime = 0;
+    }
+    const romanticBtn = document.getElementById("romanticMusicBtn");
+    if (romanticBtn) romanticBtn.textContent = "♫ Música romántica";
 
-document.getElementById("toMemories").addEventListener("click", () => {
-  showScreen("memories");
-});
+    const birthdayButton = document.getElementById("birthdayMusicBtn");
+    if (birthdayButton) {
+      birthdayButton.classList.remove("hidden");
+      birthdayAudio.currentTime = 0;
 
-document.getElementById("toPromise").addEventListener("click", () => {
-  showScreen("promise");
-});
-
-document.getElementById("toUniverse").addEventListener("click", () => {
-  showScreen("universe");
-});
-
-document.getElementById("toGarden").addEventListener("click", () => {
-  showScreen("garden");
-});
-
-document.getElementById("toFinale").addEventListener("click", async () => {
-  showScreen("finale");
-  showerPetals();
-
-  const romanticAudio = document.getElementById("romanticAudio");
-  const birthdayAudio = document.getElementById("birthdayAudio");
-  const manualPlayBtn = document.getElementById("manualPlayBirthdayBtn");
-  
-  romanticAudio.pause();
-  document.getElementById("romanticMusicBtn").textContent = "♫ Música romántica";
-
-  const birthdayButton = document.getElementById("birthdayMusicBtn");
-  birthdayButton.classList.remove("hidden");
-  birthdayAudio.currentTime = 0;
-
-  try {
-    await birthdayAudio.play();
-    birthdayButton.textContent = "♫ Feliz cumpleaños";
-    manualPlayBtn.classList.add("hidden");
-  } catch (err) {
-    console.log("Reproducción automática bloqueada por el navegador:", err);
-    manualPlayBtn.classList.remove("hidden");
-    birthdayButton.textContent = "♫ Tocar feliz cumpleaños";
-  }
-});
+      try {
+        await birthdayAudio.play();
+        birthdayButton.textContent = "♫ Feliz cumpleaños";
+        if (manualPlayBtn) manualPlayBtn.classList.add("hidden");
+      } catch (err) {
+        console.log("Reproducción automática bloqueada:", err);
+        if (manualPlayBtn) manualPlayBtn.classList.remove("hidden");
+        birthdayButton.textContent = "♫ Tocar feliz cumpleaños";
+      }
+    }
+  });
+}
 
 // Botón manual de respaldo para el feliz cumpleaños
-document.getElementById("manualPlayBirthdayBtn").addEventListener("click", async () => {
-  const birthdayAudio = document.getElementById("birthdayAudio");
-  const manualPlayBtn = document.getElementById("manualPlayBirthdayBtn");
-  const birthdayButton = document.getElementById("birthdayMusicBtn");
+const manualPlayBirthdayBtn = document.getElementById("manualPlayBirthdayBtn");
+if (manualPlayBirthdayBtn) {
+  manualPlayBirthdayBtn.addEventListener("click", async () => {
+    const birthdayAudio = document.getElementById("birthdayAudio");
+    const birthdayButton = document.getElementById("birthdayMusicBtn");
 
-  try {
-    await birthdayAudio.play();
-    birthdayButton.textContent = "♫ Feliz cumpleaños";
-    manualPlayBtn.classList.add("hidden");
-  } catch (err) {
-    console.log("No se pudo reproducir audio:", err);
-  }
-});
+    try {
+      if (birthdayAudio) await birthdayAudio.play();
+      if (birthdayButton) birthdayButton.textContent = "♫ Feliz cumpleaños";
+      manualPlayBirthdayBtn.classList.add("hidden");
+    } catch (err) {
+      console.log("No se pudo reproducir audio:", err);
+    }
+  });
+}
 
 // VOLVER A EMPEZAR
-document.getElementById("replayBtn").addEventListener("click", () => {
-  const birthdayAudio = document.getElementById("birthdayAudio");
-  const romanticAudio = document.getElementById("romanticAudio");
-  const manualPlayBtn = document.getElementById("manualPlayBirthdayBtn");
+const replayBtn = document.getElementById("replayBtn");
+if (replayBtn) {
+  replayBtn.addEventListener("click", () => {
+    const birthdayAudio = document.getElementById("birthdayAudio");
+    if (birthdayAudio) {
+      birthdayAudio.pause();
+      birthdayAudio.currentTime = 0;
+    }
+    if (manualPlayBirthdayBtn) manualPlayBirthdayBtn.classList.add("hidden");
 
-  birthdayAudio.pause();
-  birthdayAudio.currentTime = 0;
-  manualPlayBtn.classList.add("hidden");
+    const birthdayMusicBtn = document.getElementById("birthdayMusicBtn");
+    if (birthdayMusicBtn) {
+      birthdayMusicBtn.classList.add("hidden");
+      birthdayMusicBtn.textContent = "♫ Feliz cumpleaños";
+    }
 
-  document.getElementById("birthdayMusicBtn").classList.add("hidden");
-  document.getElementById("birthdayMusicBtn").textContent = "♫ Feliz cumpleaños";
+    if (openGiftBtn) openGiftBtn.classList.remove("opened");
+    if (giftSection) giftSection.classList.remove("hidden");
+    if (songRevealCard) songRevealCard.classList.add("hidden");
 
-  // Reset del sobre de la carta principal
-  envelopeButton.classList.remove("open");
-  envelopeScene.classList.remove("opened");
-  envelopeScene.classList.remove("hidden");
-  letterCard.classList.add("hidden");
+    const mySongAudio = document.getElementById("mySongAudio");
+    if (mySongAudio) {
+      mySongAudio.pause();
+      mySongAudio.currentTime = 0;
+    }
 
-  // Reset del sobre de la promesa
-  promiseEnvelopeBtn.classList.remove("open");
-  promiseEnvelopeScene.classList.remove("opened");
-  promiseEnvelopeScene.classList.remove("hidden");
-  promiseCard.classList.add("hidden");
+    if (envelopeButton) envelopeButton.classList.remove("open");
+    if (envelopeScene) {
+      envelopeScene.classList.remove("opened");
+      envelopeScene.classList.remove("hidden");
+    }
+    if (letterCard) letterCard.classList.add("hidden");
 
-  // Reset de universo y jardín
-  universeMsgBox.classList.add("hidden");
-  document.querySelectorAll(".tulip-card").forEach(c => c.classList.remove("active"));
-  tulipDisplayText.textContent = "Seleccioná un tulipán del jardín para leer su mensaje.";
+    if (promiseEnvelopeBtn) promiseEnvelopeBtn.classList.remove("open");
+    if (promiseEnvelopeScene) {
+      promiseEnvelopeScene.classList.remove("opened");
+      promiseEnvelopeScene.classList.remove("hidden");
+    }
+    if (promiseCard) promiseCard.classList.add("hidden");
 
-  document.querySelectorAll(".reason").forEach(card => {
-    card.classList.remove("open");
+    if (universeMsgBox) universeMsgBox.classList.add("hidden");
+    document.querySelectorAll(".tulip-card").forEach(c => c.classList.remove("active"));
+    if (tulipDisplayText) tulipDisplayText.textContent = "Seleccioná un tulipán del jardín para leer su mensaje.";
+
+    document.querySelectorAll(".reason").forEach(card => card.classList.remove("open"));
+
+    showScreen("intro");
   });
-
-  showScreen("intro");
-});
+}
 
 // CONTROLES MANUALES DE MÚSICA
-document.getElementById("romanticMusicBtn").addEventListener("click", async () => {
-  const audio = document.getElementById("romanticAudio");
-  const birthdayAudio = document.getElementById("birthdayAudio");
-  const button = document.getElementById("romanticMusicBtn");
+const romanticMusicBtn = document.getElementById("romanticMusicBtn");
+if (romanticMusicBtn) {
+  romanticMusicBtn.addEventListener("click", async () => {
+    const birthdayAudio = document.getElementById("birthdayAudio");
 
-  if (audio.paused) {
-    birthdayAudio.pause();
-    try {
-      await audio.play();
-      button.textContent = "♫ Pausar música";
-    } catch {
-      button.textContent = "Añadí romantica.mp3";
+    if (romanticAudio && romanticAudio.paused) {
+      if (birthdayAudio) birthdayAudio.pause();
+      try {
+        await romanticAudio.play();
+        romanticMusicBtn.textContent = "♫ Pausar música";
+      } catch {
+        romanticMusicBtn.textContent = "Añadí romantica.mp3";
+      }
+    } else if (romanticAudio) {
+      romanticAudio.pause();
+      romanticMusicBtn.textContent = "♫ Música romántica";
     }
-  } else {
-    audio.pause();
-    button.textContent = "♫ Música romántica";
-  }
-});
+  });
+}
 
-document.getElementById("birthdayMusicBtn").addEventListener("click", async () => {
-  const audio = document.getElementById("birthdayAudio");
-  const romanticAudio = document.getElementById("romanticAudio");
-  const button = document.getElementById("birthdayMusicBtn");
+const birthdayMusicBtn = document.getElementById("birthdayMusicBtn");
+if (birthdayMusicBtn) {
+  birthdayMusicBtn.addEventListener("click", async () => {
+    const birthdayAudio = document.getElementById("birthdayAudio");
 
-  if (audio.paused) {
-    romanticAudio.pause();
-    try {
-      await audio.play();
-      button.textContent = "♫ Pausar cumple";
-    } catch {
-      button.textContent = "Añadí feliz-cumple.mp3";
+    if (birthdayAudio && birthdayAudio.paused) {
+      if (romanticAudio) romanticAudio.pause();
+      if (romanticMusicBtn) romanticMusicBtn.textContent = "♫ Música romántica";
+      try {
+        await birthdayAudio.play();
+        birthdayMusicBtn.textContent = "♫ Pausar cumple";
+      } catch {
+        birthdayMusicBtn.textContent = "Añadí feliz-cumple.mp3";
+      }
+    } else if (birthdayAudio) {
+      birthdayAudio.pause();
+      birthdayMusicBtn.textContent = "♫ Feliz cumpleaños";
     }
-  } else {
-    audio.pause();
-    button.textContent = "♫ Feliz cumpleaños";
-  }
-});
+  });
+}
 
 // LLUVIA DE PÉTALOS
 function showerPetals() {
@@ -352,7 +402,6 @@ function showerPetals() {
 
   for (let i = 0; i < 30; i++) {
     const petal = document.createElement("span");
-
     petal.className = "petal";
     petal.textContent = symbols[Math.floor(Math.random() * symbols.length)];
     petal.style.left = Math.random() * 100 + "vw";
@@ -362,7 +411,6 @@ function showerPetals() {
     petal.style.fontSize = (12 + Math.random() * 16) + "px";
 
     document.body.appendChild(petal);
-
     setTimeout(() => petal.remove(), 15000);
   }
 }

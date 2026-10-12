@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="theme-color" content="#fbf5ed">
+  <meta name="theme-color" content="#2b1d17">
   <title>ÉTERNEL — Macarena</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -17,18 +17,24 @@
   <main>
     <!-- PORTADA -->
     <section class="screen" id="intro">
-      <div class="eyebrow">Aunque los kilómetros nos separen</div>
+      <div class="intro-stars" aria-hidden="true"></div>
+      <div class="eyebrow">Aunque los kilómetros nos separen en el mapa</div>
+      
       <div class="orbit" aria-hidden="true">
+        <div class="monogram-glow"></div>
         <div class="monogram">M</div>
       </div>
-      <div class="eyebrow">26 · 10 · Para siempre</div>
+
+      <div class="eyebrow gold">26 · 10 · Para toda la vida</div>
       <h1 class="title">Macarena</h1>
+      
       <p class="intro-sub">
-        Hay regalos que se envuelven.
-        Y hay sentimientos que cruzan cualquier distancia.
+        Hay distancias que se miden en pasos... 
+        y amor que cruza cualquier frontera sin avisar.
       </p>
+
       <button class="btn" id="beginBtn">Descubrir mi sorpresa</button>
-      <div class="footer">ÉTERNEL · UNA HISTORIA DE AMOR</div>
+      <div class="footer">ÉTERNEL · UNA HISTORIA SIN FRONTERAS</div>
     </section>
 
     <!-- CARTA -->
@@ -279,7 +285,7 @@
       </div>
     </section>
 
-    <!-- SORPRESA FINAL (CINEMATOGRÁFICA) -->
+    <!-- SORPRESA FINAL (CINEMATOGRÁFICA + CAJA DE REGALO) -->
     <section class="screen hidden" id="finale">
       <div class="content-wrap cinematic-celebration">
         <div class="eyebrow">Y ahora… tu deseo más bonito</div>
@@ -318,9 +324,45 @@
         </div>
 
         <div class="divider"></div>
+
+        <!-- CAJA DE REGALO INTERACTIVA FINAL -->
+        <div class="gift-box-section" id="giftSection">
+          <div class="eyebrow gold">Un último detalle para vos</div>
+          <h3 class="title" style="font-size: 24px; margin: 10px 0;">Abrí tu regalo</h3>
+          
+          <button class="gift-box-button" id="openGiftBtn" aria-label="Abrir caja de regalo">
+            <div class="gift-box">
+              <div class="gift-lid">
+                <div class="gift-bow">🎁</div>
+              </div>
+              <div class="gift-body-box">
+                <span>Tocá para abrir</span>
+              </div>
+            </div>
+          </button>
+        </div>
+
+        <!-- CONTENIDO SECRETO DEL REGALO (LA CANCIÓN) -->
+        <div class="song-reveal-card hidden" id="songRevealCard">
+          <div class="eyebrow">La sorpresa más especial</div>
+          <h3 class="title gold" style="font-size: 24px; margin: 10px 0;">Una canción para vos</h3>
+          <p class="copy" style="font-style: italic; font-size: 14px; margin-bottom: 20px;">
+            "Compuse esta canción pensando en vos, en nuestra historia y en lo mucho que significás para mí."
+          </p>
+
+          <div class="song-player-container">
+            <div class="song-icon-spin">💿</div>
+            <audio id="mySongAudio" preload="auto" controls style="width: 100%; max-width: 300px; border-radius: 30px;">
+              <source src="tu-cancion.mp3" type="audio/mpeg">
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </div>
+        </div>
+
+        <div class="divider" style="margin-top: 30px;"></div>
         <h3 class="title gold final-title">Te amo, Macarena</h3>
         <p class="eyebrow">Con todo mi corazón · 26 de octubre</p>
-        <button class="btn btn-outline" id="replayBtn">
+        <button class="btn btn-outline" id="replayBtn" style="margin-top: 20px;">
           Volver a vivir la sorpresa
         </button>
         <div class="footer">ÉTERNEL · HECHO SOLO PARA VOS</div>
