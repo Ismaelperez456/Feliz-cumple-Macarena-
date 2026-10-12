@@ -50,13 +50,80 @@ document.getElementById("fullscreenBtn").addEventListener("click", () => {
   }
 });
 
-// CONFIGURACIÓN DE AUDIO ROMÁNTICO (Bucle continuo instantáneo)
+// CONFIGURACIÓN DE AUDIO ROMÁNTICO
 const romanticAudio = document.getElementById("romanticAudio");
 if (romanticAudio) {
   romanticAudio.loop = true;
   romanticAudio.addEventListener("ended", () => {
     romanticAudio.currentTime = 0;
     romanticAudio.play().catch(err => console.log("Error al reiniciar audio romántico:", err));
+  });
+}
+
+// REPRODUCTOR PERSONALIZADO DE LA CANCIÓN SOPRESA
+const mySongAudio = document.getElementById("mySongAudio");
+const customPlayBtn = document.getElementById("customPlayBtn");
+const customProgressBar = document.getElementById("customProgressBar");
+const customProgressContainer = document.getElementById("customProgressContainer");
+const customTime = document.getElementById("customTime");
+const songDisc = document.getElementById("songDisc");
+
+function formatTime(seconds) {
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+  return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+}
+
+if (mySongAudio && customPlayBtn) {
+  customPlayBtn.addEventListener("click", () => {
+    if (mySongAudio.paused) {
+      // Pausar otros audios al reproducir la canción sorpresa
+      const birthdayAudio = document.getElementById("birthdayAudio");
+      if (birthdayAudio) {
+        birthdayAudio.pause();
+        birthdayAudio.currentTime = 0;
+      }
+      const birthdayMusicBtn = document.getElementById("birthdayMusicBtn");
+      if (birthdayMusicBtn) birthdayMusicBtn.textContent = "♫ Feliz cumpleaños";
+
+      if (romanticAudio) {
+        romanticAudio.pause();
+        romanticAudio.currentTime = 0;
+      }
+      const romanticBtn = document.getElementById("romanticMusicBtn");
+      if (romanticBtn) romanticBtn.textContent = "♫ Música romántica";
+
+      mySongAudio.play();
+      customPlayBtn.textContent = "❚❚";
+      if (songDisc) songDisc.style.animationPlayState = "running";
+    } else {
+      mySongAudio.pause();
+      customPlayBtn.textContent = "▶";
+      if (songDisc) songDisc.style.animationPlayState = "paused";
+    }
+  });
+
+  mySongAudio.addEventListener("timeupdate", () => {
+    if (mySongAudio.duration) {
+      const progressPercent = (mySongAudio.currentTime / mySongAudio.duration) * 100;
+      customProgressBar.style.width = `${progressPercent}%`;
+      customTime.textContent = `${formatTime(mySongAudio.currentTime)} / ${formatTime(mySongAudio.duration)}`;
+    }
+  });
+
+  customProgressContainer.addEventListener("click", (e) => {
+    const width = customProgressContainer.clientWidth;
+    const clickX = e.offsetX;
+    const duration = mySongAudio.duration;
+    if (duration) {
+      mySongAudio.currentTime = (clickX / width) * duration;
+    }
+  });
+
+  mySongAudio.addEventListener("ended", () => {
+    customPlayBtn.textContent = "▶";
+    customProgressBar.style.width = "0%";
+    if (songDisc) songDisc.style.animationPlayState = "paused";
   });
 }
 
@@ -193,7 +260,7 @@ if (grid) {
   });
 }
 
-// INTERACTIVIDAD CAJA DE REGALO FINAL (CANCIÓN)
+// INTERACTIVIDAD CAJA DE REGALO FINAL
 const openGiftBtn = document.getElementById("openGiftBtn");
 const giftSection = document.getElementById("giftSection");
 const songRevealCard = document.getElementById("songRevealCard");
@@ -202,7 +269,7 @@ if (openGiftBtn) {
   openGiftBtn.addEventListener("click", () => {
     if (openGiftBtn.classList.contains("opened")) return;
     openGiftBtn.classList.add("opened");
-    
+
     setTimeout(() => {
       giftSection.classList.add("hidden");
       songRevealCard.classList.remove("hidden");
@@ -254,11 +321,11 @@ if (toFinaleBtn) {
 
     const birthdayAudio = document.getElementById("birthdayAudio");
     const manualPlayBtn = document.getElementById("manualPlayBirthdayBtn");
-    const mySongAudio = document.getElementById("mySongAudio");
     
     if (mySongAudio) {
       mySongAudio.pause();
       mySongAudio.currentTime = 0;
+      if (customPlayBtn) customPlayBtn.textContent = "▶";
     }
 
     if (romanticAudio) {
@@ -324,10 +391,10 @@ if (replayBtn) {
     if (giftSection) giftSection.classList.remove("hidden");
     if (songRevealCard) songRevealCard.classList.add("hidden");
 
-    const mySongAudio = document.getElementById("mySongAudio");
     if (mySongAudio) {
       mySongAudio.pause();
       mySongAudio.currentTime = 0;
+      if (customPlayBtn) customPlayBtn.textContent = "▶";
     }
 
     if (envelopeButton) envelopeButton.classList.remove("open");

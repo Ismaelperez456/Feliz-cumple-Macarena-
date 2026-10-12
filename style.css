@@ -914,13 +914,13 @@ button {
   opacity: 0;
 }
 
-/* TARJETA SECRETA DE LA CANCIÓN */
+/* TARJETA SECRETA DE LA CANCIÓN Y REPRODUCTOR CUSTOM */
 .song-reveal-card {
   background: rgba(255, 255, 255, 0.95);
   border: 1px solid var(--dorado);
   border-radius: 14px;
   padding: 30px 20px;
-  max-width: 500px;
+  max-width: 420px;
   margin: 25px auto 0;
   box-shadow: 0 15px 45px rgba(184, 134, 69, 0.2);
   animation: aparecer 0.8s ease both;
@@ -930,14 +930,74 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 15px;
   margin-top: 15px;
 }
 
 .song-icon-spin {
   font-size: 45px;
   animation: spinSlow 10s linear infinite;
+  animation-play-state: paused;
   filter: drop-shadow(0 4px 10px rgba(184, 134, 69, 0.3));
+}
+
+/* Estilos del Reproductor Custom */
+.custom-audio-player {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fbf5ed;
+  border: 1px solid var(--borde);
+  padding: 10px 16px;
+  border-radius: 30px;
+  width: 100%;
+  max-width: 340px;
+  box-shadow: 0 4px 15px rgba(184, 134, 69, 0.1);
+}
+
+.custom-play-btn {
+  background: linear-gradient(135deg, #d8b779, #a9783c);
+  border: none;
+  color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  font-size: 13px;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.custom-play-btn:hover {
+  transform: scale(1.08);
+}
+
+.custom-progress-container {
+  flex-grow: 1;
+  height: 6px;
+  background: #e3bdab;
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.custom-progress-bar {
+  height: 100%;
+  background: var(--dorado);
+  width: 0%;
+  border-radius: 3px;
+  transition: width 0.1s linear;
+}
+
+.custom-time {
+  font: 11px Arial, sans-serif;
+  color: var(--texto);
+  min-width: 65px;
+  text-align: right;
+  flex-shrink: 0;
 }
 
 .cake-wrap {

@@ -342,7 +342,7 @@
           </button>
         </div>
 
-        <!-- CONTENIDO SECRETO DEL REGALO (LA CANCIÓN) -->
+        <!-- CONTENIDO SECRETO DEL REGALO (REPRODUCTOR PERSONALIZADO SIN DESCARGA) -->
         <div class="song-reveal-card hidden" id="songRevealCard">
           <div class="eyebrow">La sorpresa más especial</div>
           <h3 class="title gold" style="font-size: 24px; margin: 10px 0;">Una canción para vos</h3>
@@ -351,8 +351,19 @@
           </p>
 
           <div class="song-player-container">
-            <div class="song-icon-spin">💿</div>
-            <audio id="mySongAudio" preload="auto" controls style="width: 100%; max-width: 300px; border-radius: 30px;">
+            <div class="song-icon-spin" id="songDisc">💿</div>
+            
+            <!-- Reproductor Custom con Botones Propios -->
+            <div class="custom-audio-player">
+              <button class="custom-play-btn" id="customPlayBtn" aria-label="Reproducir o pausar canción">▶</button>
+              <div class="custom-progress-container" id="customProgressContainer">
+                <div class="custom-progress-bar" id="customProgressBar"></div>
+              </div>
+              <span class="custom-time" id="customTime">0:00 / 0:00</span>
+            </div>
+
+            <!-- Audio oculto sin controles nativos -->
+            <audio id="mySongAudio" preload="auto">
               <source src="tu-cancion.mp3" type="audio/mpeg">
               Tu navegador no soporta el elemento de audio.
             </audio>
