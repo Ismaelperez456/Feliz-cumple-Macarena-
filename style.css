@@ -1,10 +1,10 @@
 :root {
-  --marfil: #fbf5ed;
-  --rosa: #ead2c8;
-  --rosa-claro: #fffaf6;
+  --marfil: #fff4f1; /* Fondo principal en un tono rosita muy suave y cálido */
+  --rosa: #f3d4cb;
+  --rosa-claro: #fff9f7;
   --dorado: #b88645;
   --dorado-claro: #d8b779;
-  --texto: #654a3d;
+  --texto: #6d4b43; /* Tono de texto cálido y armonioso con el rosa */
   --borde: rgba(184, 134, 69, .35);
 }
 
@@ -91,7 +91,7 @@ button {
   max-width: 620px;
   font-size: 15px;
   line-height: 1.8;
-  color: #72584a;
+  color: #7a564e;
   margin: 0 auto 20px;
 }
 
@@ -132,7 +132,7 @@ button {
 
 /* PORTADA CINEMATOGRÁFICA ESTRELLADA */
 #intro {
-  background: radial-gradient(ellipse at 50% 30%, #2b1d17 0%, #150d0a 65%, #0a0604 100%);
+  background: radial-gradient(ellipse at 50% 30%, #3a2220 0%, #201110 65%, #0f0707 100%);
   justify-content: center;
   color: #fbf5ed;
   position: relative;
@@ -143,11 +143,11 @@ button {
   position: absolute;
   inset: 0;
   background-image: 
-    radial-gradient(2px 2px at 20px 30px, #d8b779, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 20px 30px, #ffccd5, rgba(0,0,0,0)),
     radial-gradient(1.5px 1.5px at 40px 70px, #ffffff, rgba(0,0,0,0)),
-    radial-gradient(2px 2px at 90px 40px, #d8b779, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 90px 40px, #ffccd5, rgba(0,0,0,0)),
     radial-gradient(1px 1px at 130px 80px, #ffffff, rgba(0,0,0,0)),
-    radial-gradient(2px 2px at 160px 120px, #d8b779, rgba(0,0,0,0));
+    radial-gradient(2px 2px at 160px 120px, #ffccd5, rgba(0,0,0,0));
   background-repeat: repeat;
   background-size: 200px 200px;
   opacity: 0.35;
@@ -218,7 +218,7 @@ button {
 
 .intro-sub {
   max-width: 380px;
-  color: #ebd2c8;
+  color: #f7d6d9;
   line-height: 1.8;
   margin-bottom: 28px;
   font-size: 15px;
@@ -241,9 +241,9 @@ button {
   }
 }
 
-/* CARTA Y SOBRE */
+/* CARTA Y SOBRE (Tonos rosados suaves) */
 #letter {
-  background: linear-gradient(180deg, #fffaf6, #f7e5da, #fffaf6);
+  background: linear-gradient(180deg, #fff5f3, #fde4e1, #fff5f3);
   gap: 15px;
 }
 
@@ -275,8 +275,8 @@ button {
   position: relative;
   width: min(70vw, 270px);
   height: 170px;
-  background: #e8c8b9;
-  box-shadow: 0 18px 40px #79553820;
+  background: #f0c5be;
+  box-shadow: 0 18px 40px #79383820;
   transition: transform .5s ease;
 }
 
@@ -287,7 +287,7 @@ button {
 .envelope-back {
   position: absolute;
   inset: 0;
-  background: #e7c4b2;
+  background: #ecb8b0;
 }
 
 .envelope-paper {
@@ -297,7 +297,7 @@ button {
   right: 10%;
   top: 10px;
   height: 135px;
-  background: #fffaf2;
+  background: #fffaf9;
   border: 1px solid #d8b779;
   color: #94652f;
   display: flex;
@@ -311,7 +311,7 @@ button {
 
 .envelope-heart {
   font-size: 22px;
-  color: #b77e73;
+  color: #d16b6b;
 }
 
 .envelope-left,
@@ -322,18 +322,18 @@ button {
   width: 0;
   height: 0;
   border-top: 85px solid transparent;
-  border-bottom: 85px solid #e3bdab;
+  border-bottom: 85px solid #e7adbd;
 }
 
 .envelope-left {
   left: 0;
-  border-left: 135px solid #e8c8b9;
+  border-left: 135px solid #f0c5be;
   border-right: 0;
 }
 
 .envelope-right {
   right: 0;
-  border-right: 135px solid #dcb5a3;
+  border-right: 135px solid #e2a2ae;
   border-left: 0;
 }
 
@@ -346,7 +346,7 @@ button {
   height: 0;
   border-left: 135px solid transparent;
   border-right: 135px solid transparent;
-  border-top: 98px solid #d7ae9a;
+  border-top: 98px solid #d896a2;
   transform-origin: top center;
   transition: transform .7s ease;
 }
@@ -391,9 +391,9 @@ button {
 .letter-card {
   width: min(100%, 720px);
   padding: clamp(20px, 5vw, 45px);
-  background: #ffffffd9;
+  background: #ffffffea;
   border: 1px solid var(--borde);
-  box-shadow: 0 20px 70px #7955380d;
+  box-shadow: 0 20px 70px #7938380d;
   animation: aparecer .8s ease both;
   margin: auto;
 }
@@ -404,7 +404,7 @@ button {
 
 /* RECETA MÉDICA */
 #prescription {
-  background: linear-gradient(145deg, #fffaf5, #f5ebd9);
+  background: linear-gradient(145deg, #fff5f3, #fce0e2);
 }
 
 .prescription-card {
@@ -421,7 +421,7 @@ button {
   display: flex;
   justify-content: space-between;
   font-size: 13px;
-  color: #72584a;
+  color: #7a564e;
   font-family: Arial, sans-serif;
 }
 
@@ -434,7 +434,7 @@ button {
 .prescription-list li {
   font-size: 14px;
   line-height: 1.7;
-  color: #72584a;
+  color: #7a564e;
   padding: 6px 0;
   border-bottom: 1px dashed rgba(184, 134, 69, 0.2);
 }
@@ -446,12 +446,12 @@ button {
   margin-top: 25px;
   font-size: 12px;
   font-style: italic;
-  color: #654a3d;
+  color: #6d4b43;
 }
 
 /* RAZONES */
 #reasons {
-  background: radial-gradient(ellipse, #fffaf5, #f3e1d5);
+  background: radial-gradient(ellipse, #fff5f3, #fcd8dc);
 }
 
 .content-wrap {
@@ -469,7 +469,7 @@ button {
 .reason {
   min-height: 100px;
   padding: 12px 10px;
-  background: #ffffffa8;
+  background: #ffffffcc;
   border: 1px solid var(--borde);
   color: #986a34;
   cursor: pointer;
@@ -483,12 +483,12 @@ button {
 }
 
 .reason:hover {
-  background: #f7ede4;
+  background: #fff0f2;
   border-color: var(--dorado);
 }
 
 .reason.open {
-  background: #f0d9c9;
+  background: #f9d6dc;
   border-color: var(--dorado);
   transform: scale(1.02);
 }
@@ -510,7 +510,7 @@ button {
   display: none;
   font-size: 12px;
   line-height: 1.4;
-  color: #654a3d;
+  color: #6d4b43;
   animation: aparecer .3s ease;
 }
 
@@ -536,7 +536,7 @@ button {
 
 /* SUEÑOS Y UROLOGÍA */
 #dreams {
-  background: linear-gradient(145deg, #fffaf5, #f3dfd2);
+  background: linear-gradient(145deg, #fff5f3, #fcd8dc);
 }
 
 .medical-mark {
@@ -553,11 +553,11 @@ button {
 
 /* MENSAJES / DISTANCIA */
 #memories {
-  background: linear-gradient(145deg, #f7e8dc, #fffaf5);
+  background: linear-gradient(145deg, #fce0e2, #fff5f3);
 }
 
 .quote-box {
-  background: #ffffffa8;
+  background: #ffffffcc;
   border: 1px solid var(--borde);
   padding: 25px;
   border-radius: 8px;
@@ -568,12 +568,12 @@ button {
 
 /* UNA PROMESA PARA VOS */
 #promise {
-  background: radial-gradient(ellipse at 50% 40%, #ffffff 0%, #f7e8dc 60%, #eed8cb 100%);
+  background: radial-gradient(ellipse at 50% 40%, #ffffff 0%, #fcd8dc 60%, #f3c2c7 100%);
   gap: 15px;
 }
 
 .promise-envelope {
-  background: #ecd3c6;
+  background: #f1bfb8;
   border: 1px solid var(--borde);
   box-shadow: 0 18px 45px rgba(184, 134, 69, 0.2);
 }
@@ -593,7 +593,7 @@ button {
 
 /* NUESTRO UNIVERSO */
 #universe {
-  background: linear-gradient(150deg, #fffaf5, #f3e0d2, #faece1);
+  background: linear-gradient(150deg, #fff5f3, #fcd0d6, #fae0e4);
 }
 
 .universe-map-container {
@@ -652,7 +652,7 @@ button {
 .pulsing-heart-btn {
   background: #ffffff;
   border: 2px solid var(--dorado);
-  color: #b77e73;
+  color: #d16b6b;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -690,7 +690,7 @@ button {
 
 /* JARDÍN DE TULIPANES BLANCOS */
 #garden {
-  background: radial-gradient(circle at 50% 30%, #fffaf5, #f5ebd9, #ead2c855);
+  background: radial-gradient(circle at 50% 30%, #fff5f3, #fcd8dc, #f3c2c755);
 }
 
 .tulip-garden-grid {
@@ -724,13 +724,12 @@ button {
 }
 
 .tulip-card.active {
-  background: #fdfaf6;
+  background: #fdf5f6;
   border-color: var(--dorado);
   transform: scale(1.05);
   box-shadow: 0 0 15px rgba(216, 183, 121, 0.4);
 }
 
-/* Estilo para que el tulipán sea blanco perlado con bordes dorados */
 .tulip-icon {
   font-size: 30px;
   margin-bottom: 6px;
@@ -783,16 +782,16 @@ button {
 /* SORPRESA FINAL CINEMATOGRÁFICA */
 #finale {
   overflow-y: auto;
-  background: radial-gradient(ellipse at 50% 50%, #ffffff 0%, #f9e3d0 50%, #e6c5b0 100%);
+  background: radial-gradient(ellipse at 50% 50%, #ffffff 0%, #f9d4dc 50%, #e8aeb7 100%);
   animation: illuminationCinematic 2.5s ease forwards;
 }
 
 @keyframes illuminationCinematic {
   0% {
-    background: radial-gradient(ellipse at 50% 50%, #2b1d17 0%, #1a100c 70%, #0d0806 100%);
+    background: radial-gradient(ellipse at 50% 50%, #3a2220 0%, #201110 70%, #0f0707 100%);
   }
   100% {
-    background: radial-gradient(ellipse at 50% 50%, #fffbf7 0%, #f7dfcc 50%, #e8c8b2 100%);
+    background: radial-gradient(ellipse at 50% 50%, #fff4f5 0%, #f7d2d8 50%, #e6a7b2 100%);
   }
 }
 
@@ -889,7 +888,7 @@ button {
 .gift-body-box {
   width: 130px;
   height: 85px;
-  background: linear-gradient(135deg, #e8c8b9, #dcb5a3);
+  background: linear-gradient(135deg, #f0c5be, #e2a2ae);
   border-radius: 0 0 8px 8px;
   position: relative;
   display: grid;
@@ -902,7 +901,7 @@ button {
   font: 9px Arial, sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #654a3d;
+  color: #6d4b43;
   font-weight: bold;
 }
 
@@ -948,7 +947,7 @@ button {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: #fbf5ed;
+  background: #fff4f1;
   border: 1px solid var(--borde);
   padding: 10px 16px;
   border-radius: 30px;
@@ -979,7 +978,7 @@ button {
 .custom-progress-container {
   flex-grow: 1;
   height: 6px;
-  background: #e3bdab;
+  background: #e2a2ae;
   border-radius: 3px;
   cursor: pointer;
   position: relative;
@@ -1028,7 +1027,7 @@ button {
     #b38b50
   );
   border-bottom: 7px solid #b88645;
-  box-shadow: 0 20px 35px #79553820;
+  box-shadow: 0 20px 35px #79383820;
 }
 
 .cake-top {
@@ -1123,7 +1122,7 @@ button {
 .final-message {
   max-width: 580px;
   line-height: 1.8;
-  color: #72584a;
+  color: #7a564e;
   margin: 0 auto 10px;
   font-size: 15px;
 }
@@ -1138,7 +1137,7 @@ button {
   z-index: 4;
   top: -10vh;
   pointer-events: none;
-  color: #c78f80;
+  color: #d16b6b;
   animation: fall linear forwards;
 }
 
