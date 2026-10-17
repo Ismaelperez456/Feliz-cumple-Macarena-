@@ -1,10 +1,10 @@
 :root {
-  --marfil: #fff4f1; /* Fondo principal en un tono rosita muy suave y cálido */
+  --marfil: #fff4f1;
   --rosa: #f3d4cb;
   --rosa-claro: #fff9f7;
   --dorado: #b88645;
   --dorado-claro: #d8b779;
-  --texto: #6d4b43; /* Tono de texto cálido y armonioso con el rosa */
+  --texto: #6d4b43;
   --borde: rgba(184, 134, 69, .35);
 }
 
@@ -54,7 +54,6 @@ button {
   transform: scale(0.9);
 }
 
-/* Permitir scroll vertical fluido en cada pantalla */
 .screen {
   min-height: 100vh;
   min-height: 100dvh;
@@ -241,7 +240,7 @@ button {
   }
 }
 
-/* CARTA Y SOBRE (Tonos rosados suaves) */
+/* CARTA Y SOBRE */
 #letter {
   background: linear-gradient(180deg, #fff5f3, #fde4e1, #fff5f3);
   gap: 15px;
@@ -942,17 +941,16 @@ button {
   filter: drop-shadow(0 4px 10px rgba(184, 134, 69, 0.3));
 }
 
-/* Estilos del Reproductor Custom */
 .custom-audio-player {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   background: #fff4f1;
   border: 1px solid var(--borde);
-  padding: 10px 16px;
+  padding: 10px 14px;
   border-radius: 30px;
   width: 100%;
-  max-width: 340px;
+  max-width: 360px;
   box-shadow: 0 4px 15px rgba(184, 134, 69, 0.1);
 }
 
@@ -996,9 +994,116 @@ button {
 .custom-time {
   font: 11px Arial, sans-serif;
   color: var(--texto);
-  min-width: 65px;
+  min-width: 60px;
   text-align: right;
   flex-shrink: 0;
+}
+
+.custom-download-btn {
+  background: linear-gradient(135deg, #d8b779, #a9783c);
+  color: white;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: bold;
+  flex-shrink: 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 8px rgba(184, 134, 69, 0.2);
+}
+
+.custom-download-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 4px 12px rgba(184, 134, 69, 0.35);
+}
+
+.custom-download-btn:active {
+  transform: scale(0.95);
+}
+
+/* ÚLTIMA CARTA PARA VOS */
+#finalLetter {
+  background: radial-gradient(ellipse at 50% 30%, #3a2220 0%, #201110 65%, #0f0707 100%);
+  color: #fbf5ed;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+#finalLetter .title {
+  color: #fffaf5;
+  text-shadow: 0 4px 20px rgba(184, 134, 69, 0.4);
+}
+
+.final-letter-wrap {
+  width: min(100%, 720px);
+  z-index: 2;
+}
+
+.luxury-letter-card {
+  background: rgba(255, 252, 248, 0.95);
+  border: 1px solid var(--dorado-claro);
+  border-radius: 12px;
+  padding: clamp(25px, 5vw, 45px);
+  box-shadow: 0 20px 70px rgba(184, 134, 69, 0.25);
+  color: var(--texto);
+  text-align: left;
+  margin-top: 15px;
+}
+
+.letter-typed-content {
+  font-size: 16px;
+  line-height: 1.9;
+  white-space: pre-wrap;
+  word-break: break-word;
+  min-height: 180px;
+}
+
+.final-letter-signature {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(184, 134, 69, 0.25);
+  text-align: right;
+  animation: aparecer 0.8s ease both;
+}
+
+.signature-name {
+  font-family: Georgia, serif;
+  font-size: 22px;
+  font-style: italic;
+  color: var(--dorado);
+  margin-bottom: 5px;
+}
+
+.signature-note {
+  font-size: 13px;
+  font-style: italic;
+  color: #7a564e;
+  margin: 0;
+}
+
+.final-actions-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+@media (min-width: 550px) {
+  .final-actions-row {
+    flex-direction: row;
+    justify-content: center;
+    gap: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .letter-typed-content {
+    transition: none;
+  }
 }
 
 .cake-wrap {
@@ -1131,7 +1236,6 @@ button {
   font-size: clamp(26px, 5vw, 36px);
 }
 
-/* PÉTALOS */
 .petal {
   position: fixed;
   z-index: 4;
@@ -1148,7 +1252,6 @@ button {
   }
 }
 
-/* MÚSICA */
 .music-panel {
   position: fixed;
   z-index: 10;

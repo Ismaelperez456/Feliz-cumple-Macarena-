@@ -342,7 +342,7 @@
           </button>
         </div>
 
-        <!-- CONTENIDO SECRETO DEL REGALO (REPRODUCTOR PERSONALIZADO SIN DESCARGA) -->
+        <!-- CONTENIDO SECRETO DEL REGALO (REPRODUCTOR PERSONALIZADO CON DESCARGA) -->
         <div class="song-reveal-card hidden" id="songRevealCard">
           <div class="eyebrow">La sorpresa más especial</div>
           <h3 class="title gold" style="font-size: 24px; margin: 10px 0;">Una canción para vos</h3>
@@ -353,13 +353,18 @@
           <div class="song-player-container">
             <div class="song-icon-spin" id="songDisc">💿</div>
             
-            <!-- Reproductor Custom con Botones Propios -->
+            <!-- Reproductor Custom con Botón de Descarga -->
             <div class="custom-audio-player">
               <button class="custom-play-btn" id="customPlayBtn" aria-label="Reproducir o pausar canción">▶</button>
               <div class="custom-progress-container" id="customProgressContainer">
                 <div class="custom-progress-bar" id="customProgressBar"></div>
               </div>
               <span class="custom-time" id="customTime">0:00 / 0:00</span>
+
+              <!-- Botón de descarga -->
+              <a href="tu-cancion.mp3" download="Cancion-Especial-Macarena.mp3" class="custom-download-btn" aria-label="Descargar canción" title="Descargar canción">
+                ⬇
+              </a>
             </div>
 
             <!-- Audio oculto sin controles nativos -->
@@ -368,6 +373,9 @@
               Tu navegador no soporta el elemento de audio.
             </audio>
           </div>
+
+          <!-- Botón para pasar a la última carta -->
+          <button class="btn" id="toFinalLetterBtn" style="margin-top: 25px;">Hay algo más que quiero decirte</button>
         </div>
 
         <div class="divider" style="margin-top: 30px;"></div>
@@ -377,6 +385,36 @@
           Volver a vivir la sorpresa
         </button>
         <div class="footer">ÉTERNEL · HECHO SOLO PARA VOS</div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: MI ÚLTIMA CARTA PARA VOS -->
+    <section class="screen hidden" id="finalLetter">
+      <div class="intro-stars" aria-hidden="true"></div>
+      <div class="content-wrap final-letter-wrap">
+        <div class="eyebrow gold">Para la mujer de mi vida</div>
+        <h2 class="title">Mi última carta para vos</h2>
+        <div class="divider"></div>
+
+        <div class="luxury-letter-card">
+          <div class="letter-typed-content" id="typewriterText"></div>
+          
+          <div class="final-letter-signature hidden" id="finalSignatureBlock">
+            <div class="signature-name">Ismael <span class="gold">♥</span></div>
+            <p class="signature-note">Con todo mi amor, hoy y en cada uno de los días que todavía nos esperan.</p>
+          </div>
+        </div>
+
+        <div class="final-actions-row">
+          <!-- Botón agregado para volver a la canción secreta -->
+          <button class="btn btn-outline hidden" id="backToSongBtn" style="margin-top: 30px;">
+            ♫ Volver a la canción secreta
+          </button>
+          
+          <button class="btn btn-outline hidden" id="restartExperienceBtn" style="margin-top: 30px;">
+            Volver a vivir nuestra historia
+          </button>
+        </div>
       </div>
     </section>
   </main>

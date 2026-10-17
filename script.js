@@ -9,7 +9,8 @@ const screens = [
   "promise",
   "universe",
   "garden",
-  "finale"
+  "finale",
+  "finalLetter"
 ];
 
 function showScreen(id) {
@@ -77,7 +78,6 @@ function formatTime(seconds) {
 if (mySongAudio && customPlayBtn) {
   customPlayBtn.addEventListener("click", () => {
     if (mySongAudio.paused) {
-      // Pausar otros audios al reproducir la canción sorpresa
       const birthdayAudio = document.getElementById("birthdayAudio");
       if (birthdayAudio) {
         birthdayAudio.pause();
@@ -167,7 +167,7 @@ if (promiseEnvelopeBtn) {
   });
 }
 
-// INTERACTIVIDAD CORAZÓN DE DISTANCIA (TUCUMÁN - MANILA)
+// INTERACTIVIDAD CORAZÓN DE DISTANCIA
 const universeHeartBtn = document.getElementById("universeHeartBtn");
 const universeMsgBox = document.getElementById("universeMsgBox");
 
@@ -177,7 +177,7 @@ if (universeHeartBtn) {
   });
 }
 
-// JARDÍN DE TULIPANES INTERACTIVO
+// JARDÍN DE TULIPANES
 const tulipPhrases = [
   "Cada pétalo blanco representa la paz y la pureza del amor sincero que te tengo.",
   "A la distancia, sos mi pensamiento favorito al despertar y antes de dormir.",
@@ -260,7 +260,7 @@ if (grid) {
   });
 }
 
-// INTERACTIVIDAD CAJA DE REGALO FINAL
+// CAJA DE REGALO FINAL
 const openGiftBtn = document.getElementById("openGiftBtn");
 const giftSection = document.getElementById("giftSection");
 const songRevealCard = document.getElementById("songRevealCard");
@@ -275,6 +275,83 @@ if (openGiftBtn) {
       songRevealCard.classList.remove("hidden");
       songRevealCard.scrollIntoView({ behavior: "smooth", block: "center" });
     }, 600);
+  });
+}
+
+// CARTA FINAL CON EFECTO DE ESCRITURA PROGRESIVA
+let typewriterTimeout = null;
+
+function runTypewriterEffect() {
+  const textContainer = document.getElementById("typewriterText");
+  const signatureBlock = document.getElementById("finalSignatureBlock");
+  const restartBtn = document.getElementById("restartExperienceBtn");
+  const backToSongBtn = document.getElementById("backToSongBtn");
+  
+  if (!textContainer) return;
+
+  textContainer.innerHTML = "";
+  if (signatureBlock) signatureBlock.classList.add("hidden");
+  if (restartBtn) restartBtn.classList.add("hidden");
+  if (backToSongBtn) backToSongBtn.classList.add("hidden");
+
+  const fullText = `Mi querida Macarena,
+
+Hoy, al llegar a este rincón creado especialmente para vos en tu cumpleaños número 31, quiero detener un momento el tiempo para escribirte lo que mi corazón siente cada día.
+
+Admiro profundamente la mujer en la que te has convertido. Ver el esfuerzo, la constancia y la pasión con la que te preparas todos los días para ser uróloga me llena de un orgullo absoluto. Sé el peso de las guardias, el cansancio y las horas de estudio, pero también sé que tu vocación no tiene límites.
+
+Aunque nos toque transitar este camino a la distancia, quiero que sepas que cada uno de mis días tiene tu nombre. Te amo con el alma, con la certeza de que todo este esfuerzo vale la pena y con la ilusión intacta de construir nuestro futuro codo a codo, compartiendo la vida entera.`;
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (prefersReducedMotion) {
+    textContainer.textContent = fullText;
+    if (signatureBlock) signatureBlock.classList.remove("hidden");
+    if (restartBtn) restartBtn.classList.remove("hidden");
+    if (backToSongBtn) backToSongBtn.classList.remove("hidden");
+    return;
+  }
+
+  let index = 0;
+  function typeChar() {
+    if (index < fullText.length) {
+      textContainer.textContent += fullText.charAt(index);
+      index++;
+      
+      let charDelay = 22;
+      const currentChar = fullText.charAt(index - 1);
+      if (currentChar === '.' || currentChar === ',') {
+        charDelay = 280;
+      } else if (currentChar === '\n') {
+        charDelay = 400;
+      }
+      
+      typewriterTimeout = setTimeout(typeChar, charDelay);
+    } else {
+      if (signatureBlock) signatureBlock.classList.remove("hidden");
+      if (restartBtn) restartBtn.classList.remove("hidden");
+      if (backToSongBtn) backToSongBtn.classList.remove("hidden");
+    }
+  }
+
+  typeChar();
+}
+
+// BOTÓN PARA PASAR A LA ÚLTIMA CARTA DESDE LA CANCIÓN
+const toFinalLetterBtn = document.getElementById("toFinalLetterBtn");
+if (toFinalLetterBtn) {
+  toFinalLetterBtn.addEventListener("click", () => {
+    if (typewriterTimeout) clearTimeout(typewriterTimeout);
+    showScreen("finalLetter");
+    runTypewriterEffect();
+  });
+}
+
+// BOTÓN PARA VOLVER A LA CANCIÓN SECRETA DESDE LA CARTA FINAL
+const backToSongBtn = document.getElementById("backToSongBtn");
+if (backToSongBtn) {
+  backToSongBtn.addEventListener("click", () => {
+    showScreen("finale");
   });
 }
 
@@ -353,7 +430,6 @@ if (toFinaleBtn) {
   });
 }
 
-// Botón manual de respaldo para el feliz cumpleaños
 const manualPlayBirthdayBtn = document.getElementById("manualPlayBirthdayBtn");
 if (manualPlayBirthdayBtn) {
   manualPlayBirthdayBtn.addEventListener("click", async () => {
@@ -370,55 +446,71 @@ if (manualPlayBirthdayBtn) {
   });
 }
 
-// VOLVER A EMPEZAR
+// FUNCIÓN DE REINICIO DE LA EXPERIENCIA
+function resetEntireExperience() {
+  if (typewriterTimeout) clearTimeout(typewriterTimeout);
+
+  const birthdayAudio = document.getElementById("birthdayAudio");
+  if (birthdayAudio) {
+    birthdayAudio.pause();
+    birthdayAudio.currentTime = 0;
+  }
+  if (manualPlayBirthdayBtn) manualPlayBirthdayBtn.classList.add("hidden");
+
+  const birthdayMusicBtn = document.getElementById("birthdayMusicBtn");
+  if (birthdayMusicBtn) {
+    birthdayMusicBtn.classList.add("hidden");
+    birthdayMusicBtn.textContent = "♫ Feliz cumpleaños";
+  }
+
+  if (openGiftBtn) openGiftBtn.classList.remove("opened");
+  if (giftSection) giftSection.classList.remove("hidden");
+  if (songRevealCard) songRevealCard.classList.add("hidden");
+
+  if (mySongAudio) {
+    mySongAudio.pause();
+    mySongAudio.currentTime = 0;
+    if (customPlayBtn) customPlayBtn.textContent = "▶";
+  }
+
+  if (envelopeButton) envelopeButton.classList.remove("open");
+  if (envelopeScene) {
+    envelopeScene.classList.remove("opened");
+    envelopeScene.classList.remove("hidden");
+  }
+  if (letterCard) letterCard.classList.add("hidden");
+
+  if (promiseEnvelopeBtn) promiseEnvelopeBtn.classList.remove("open");
+  if (promiseEnvelopeScene) {
+    promiseEnvelopeScene.classList.remove("opened");
+    promiseEnvelopeScene.classList.remove("hidden");
+  }
+  if (promiseCard) promiseCard.classList.add("hidden");
+
+  if (universeMsgBox) universeMsgBox.classList.add("hidden");
+  document.querySelectorAll(".tulip-card").forEach(c => c.classList.remove("active"));
+  if (tulipDisplayText) tulipDisplayText.textContent = "Seleccioná un tulipán del jardín para leer su mensaje.";
+
+  document.querySelectorAll(".reason").forEach(card => card.classList.remove("open"));
+
+  const signatureBlock = document.getElementById("finalSignatureBlock");
+  const restartBtn = document.getElementById("restartExperienceBtn");
+  const backToSongBtn = document.getElementById("backToSongBtn");
+  if (signatureBlock) signatureBlock.classList.add("hidden");
+  if (restartBtn) restartBtn.classList.add("hidden");
+  if (backToSongBtn) backToSongBtn.classList.add("hidden");
+
+  showScreen("intro");
+}
+
 const replayBtn = document.getElementById("replayBtn");
 if (replayBtn) {
-  replayBtn.addEventListener("click", () => {
-    const birthdayAudio = document.getElementById("birthdayAudio");
-    if (birthdayAudio) {
-      birthdayAudio.pause();
-      birthdayAudio.currentTime = 0;
-    }
-    if (manualPlayBirthdayBtn) manualPlayBirthdayBtn.classList.add("hidden");
+  replayBtn.addEventListener("click", resetEntireExperience);
+}
 
-    const birthdayMusicBtn = document.getElementById("birthdayMusicBtn");
-    if (birthdayMusicBtn) {
-      birthdayMusicBtn.classList.add("hidden");
-      birthdayMusicBtn.textContent = "♫ Feliz cumpleaños";
-    }
-
-    if (openGiftBtn) openGiftBtn.classList.remove("opened");
-    if (giftSection) giftSection.classList.remove("hidden");
-    if (songRevealCard) songRevealCard.classList.add("hidden");
-
-    if (mySongAudio) {
-      mySongAudio.pause();
-      mySongAudio.currentTime = 0;
-      if (customPlayBtn) customPlayBtn.textContent = "▶";
-    }
-
-    if (envelopeButton) envelopeButton.classList.remove("open");
-    if (envelopeScene) {
-      envelopeScene.classList.remove("opened");
-      envelopeScene.classList.remove("hidden");
-    }
-    if (letterCard) letterCard.classList.add("hidden");
-
-    if (promiseEnvelopeBtn) promiseEnvelopeBtn.classList.remove("open");
-    if (promiseEnvelopeScene) {
-      promiseEnvelopeScene.classList.remove("opened");
-      promiseEnvelopeScene.classList.remove("hidden");
-    }
-    if (promiseCard) promiseCard.classList.add("hidden");
-
-    if (universeMsgBox) universeMsgBox.classList.add("hidden");
-    document.querySelectorAll(".tulip-card").forEach(c => c.classList.remove("active"));
-    if (tulipDisplayText) tulipDisplayText.textContent = "Seleccioná un tulipán del jardín para leer su mensaje.";
-
-    document.querySelectorAll(".reason").forEach(card => card.classList.remove("open"));
-
-    showScreen("intro");
-  });
+const restartExperienceBtn = document.getElementById("restartExperienceBtn");
+if (restartExperienceBtn) {
+  restartExperienceBtn.addEventListener("click", resetEntireExperience);
 }
 
 // CONTROLES MANUALES DE MÚSICA
